@@ -1395,6 +1395,17 @@ Function DeployVMs ($xmlConfig, $setupType, $Distro, $getLogsIfFailed = $false, 
        }
 		$retValue = DeployManagementServices -xmlConfig $xmlConfig -setupType $setupType -Distro $Distro -getLogsIfFailed $getLogsIfFailed -GetDeploymentStatistics $GetDeploymentStatistics -region $region -storageAccount $storageAccount -timeOutSeconds $timeOutSeconds
 	}
+	if ( $retValue -and $EnableAcceleratedNetworking)
+    {
+		LogMsg "Enable EnableAcceleratedNetworking"
+		#Leave for freebsd config on VMs
+		#$SRIOVStatus = EnableSRIOVInAllVMs -allVMData $allVMData
+		#if ( !$SRIOVStatus)
+		#{
+        #    LogErr "Failed to enable Accelerated Networking. Aborting tests."
+        #    $retValue = ""
+		#}
+    }
 	return $retValue
 }
 
